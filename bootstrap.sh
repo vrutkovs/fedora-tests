@@ -21,7 +21,7 @@ abrt-auto-reporting enabled
 systemctl start abrtd
 
 echo "Running behave tests"
-sudo -u test behave -f plain -f html -o /tmp/report.html; rc =$?
+sudo -u test behave -f html -o /tmp/report.html -f plain; rc =$?
 
 abrt-cli ls > /tmp/abrt.log
 rhts-submit-log -l /tmp/abrt.log
