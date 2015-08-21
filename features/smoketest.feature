@@ -55,3 +55,29 @@ Feature: GNOME Smoketest
     * Wait for process "gnome-session" to appear
     * Wait for "Entering running" message in journalctl
     * Wait for "GNOME Shell started at" message in journalctl
+
+  Scenario: Gnome-classic
+    * Set gdm options:
+        | section | key                  | value |
+        | daemon  | AutomaticLogin       | true  |
+        | daemon  | AutomaticLoginEnable | test  |
+        | debug   | Enable               | true  |
+    * Set gdm to use "gnome-classic" session
+    * Start gdm service
+    * Wait for process "gdm" to appear
+    * Wait for process "gnome-session" to appear
+    * Wait for "Entering running" message in journalctl
+    * Wait for "GNOME Shell started at" message in journalctl
+
+  Scenario: Gnome-wayland
+    * Set gdm options:
+        | section | key                  | value |
+        | daemon  | AutomaticLogin       | true  |
+        | daemon  | AutomaticLoginEnable | test  |
+        | debug   | Enable               | true  |
+    * Set gdm to use "gnome-wayland" session
+    * Start gdm service
+    * Wait for process "gdm" to appear
+    * Wait for process "gnome-session" to appear
+    * Wait for "Entering running" message in journalctl
+    * Wait for "GNOME Shell started at" message in journalctl
