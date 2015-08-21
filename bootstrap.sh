@@ -19,4 +19,8 @@ echo "Enable abrt autoreporting"
 abrt-auto-reporting enabled
 
 echo "Running behave tests"
-sudo -u test behave -f plain
+sudo -u test behave -f plain -f html -o /tmp/report.html; rc =$?
+
+rhts-submit-log -l /tmp/report.html
+
+exit $rc
