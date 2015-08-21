@@ -1,3 +1,0 @@
-image: ruby2.0.0
-script:
-  - echo "hello there"
