@@ -1,19 +1,18 @@
 #!/bin/sh
 
-# Update the system
+echo "Updating the system"
 dnf clean expire-cache
 dnf update -y
 
-# Setup passwordless sudo
+echo "Enabling passwordless sudo"
+sed -i s/# %wheel/%wheel/g /etc/sudoers
 
-# Add test user
+echo "Adding a new test user"
 useradd test
 echo "redhat" | passwd test --stdin
 usermod -aG wheel test
 
 
-# Install behave
+echo "Running behave tests"
 dnf install -y python-behave
-
-# Run behave tests
-# sudo -u test behave
+sudo -u test behave
