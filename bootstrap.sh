@@ -16,11 +16,15 @@ echo "Installing test requirements"
 dnf install -y python-behave systemd-python
 
 echo "Enable abrt autoreporting"
+dnf install -y abrt abrt-addon*
 abrt-auto-reporting enabled
+systemctl start abrtd
 
 echo "Running behave tests"
 sudo -u test behave -f plain -f html -o /tmp/report.html; rc =$?
 
+abrt-cli ls > /tmp/abrt.log
+rhts-submit-log -l /tmp/abrt.log
 rhts-submit-log -l /tmp/report.html
 
 exit $rc
