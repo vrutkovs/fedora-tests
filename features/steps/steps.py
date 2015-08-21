@@ -40,7 +40,7 @@ def wait_for_journalctl_message(context, message_part, timeout=60):
         except subprocess.CalledProcessError as e:
             print(e.output)
         sleep(1)
-    raise Exception("Process %s didn't show up in %s secs" % (process, timeout))
+    raise Exception("Message '%s' was not found in %s secs" % (message_part, timeout))
 
 
 @step(u'Make sure "{group_name}" package group is installed')
