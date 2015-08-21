@@ -15,4 +15,4 @@ usermod -aG wheel test
 
 echo "Running behave tests"
 dnf install -y python-behave
-sudo -u test behave
+sudo -u test behave -f plain
