@@ -24,6 +24,9 @@ echo ">> Running behave tests"
 sudo -u test behave -f html -o /tmp/report.html -f plain; rc=$?
 rhts-submit-log -l /tmp/report.html
 
+journalctl -b --no-pager -o cat > /tmp/journal.log
+rhts-submit-log -l /tmp/journal.log
+
 abrt-cli ls > /tmp/abrt.log
 rhts-submit-log -l /tmp/abrt.log
 
