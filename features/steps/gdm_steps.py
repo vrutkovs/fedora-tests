@@ -28,10 +28,11 @@ def set_gdm_options(context):
             config.add_section(row['section'])
         config.set(row['section'], row['key'], row['value'])
 
-    tmpfile = tempfile.NamedTemporaryFile()
-    config.write(tmpfile)
+    tmppath = '/tmp/gdm.config'
+    with open(tmppath, 'wb') as configfile:
+        config.write(configfile)
 
-    cmd = "sudo cp %s %s" % (tmpfile.name, GDM_CONFIG_FILE)
+    cmd = "sudo cp %s %s" % (tmppath, GDM_CONFIG_FILE)
     try:
         subprocess.check_output(cmd, shell=True)
     except subprocess.CalledProcessError as e:
