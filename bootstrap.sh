@@ -17,6 +17,12 @@ dnf install -y python-behave systemd-python gnome-desktop-testing
 echo ">> Enable abrt autoreporting"
 dnf install -y abrt abrt-addon*
 abrt-auto-reporting enabled
+
+echo ">> Enable abrt FAF reporting"
+sed -i 's/# URL/URL/' /etc/libreport/plugins/ureport.conf
+sed -i 's/# SSLVerify/SSLVerify/' /etc/libreport/plugins/ureport.conf
+
+echo ">> Restarting abrt"
 systemctl start abrtd
 systemctl start abrt-journal-core abrt-oops
 
