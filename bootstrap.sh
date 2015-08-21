@@ -12,7 +12,8 @@ useradd test
 echo "redhat" | passwd test --stdin
 usermod -aG wheel test
 
+echo "Installing test requirements"
+dnf install -y python-behave systemd-python
 
 echo "Running behave tests"
-dnf install -y python-behave
 sudo -u test behave -f plain

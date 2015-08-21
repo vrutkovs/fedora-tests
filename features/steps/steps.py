@@ -1,6 +1,7 @@
 from behave import step
 from time import sleep
 import subprocess
+from systemd import journal as journalctl
 
 
 @step(u'Start {service_name} service')
@@ -31,16 +32,16 @@ def wait_for_process_to_appear(context, process, timeout=60):
 @step(u'Wait for "{message_part}" message in journalctl')
 @step(u'Wait for "{message_part}" message in journalctl in {timeout} seconds')
 def wait_for_journalctl_message(context, message_part, timeout=60):
-    cmd = "sudo journalctl --no-pager -o short-monotonic -q -b | grep '%s'" % message_part
-    for attempt in xrange(0, timeout):
-        try:
-            out = subprocess.check_output(cmd, shell=True)
-            if out != '':
-                return
-        except subprocess.CalledProcessError as e:
-            print(e.output)
-        sleep(1)
-    raise Exception("Message '%s' was not found in %s secs" % (message_part, timeout))
+    journal = journalctl.Reader()
+    try:
+        journal.this_boot()
+        journal.log_level(journalctl.LOG_DEBUG)
+        journal.seek_tail()
+        journal.journal.add_match('MESSAGE', message_part)
+        print(journal.get_next())
+        raise Exception("Message '%s' was not found in %s secs" % (message_part, timeout))
+    finally:
+        journal.close()
 
 
 @step(u'Make sure "{group_name}" package group is installed')
