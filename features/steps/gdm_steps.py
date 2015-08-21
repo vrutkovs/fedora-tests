@@ -28,7 +28,7 @@ def set_gdm_options(context):
             config.add_section(row['section'])
         config.set(row['section'], row['key'], row['value'])
 
-    tmpfile = tempfile.TemporaryFile()
+    tmpfile = tempfile.NamedTemporaryFile()
     config.write(tmpfile)
 
     cmd = "sudo cp %s %s" % (tmpfile.name, GDM_CONFIG_FILE)
