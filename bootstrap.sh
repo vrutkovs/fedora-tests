@@ -22,9 +22,12 @@ systemctl start abrtd
 
 echo "Running behave tests"
 sudo -u test behave -f html -o /tmp/report.html -f plain; rc =$?
+rhts-submit-log -l /tmp/report.html
 
 abrt-cli ls > /tmp/abrt.log
 rhts-submit-log -l /tmp/abrt.log
-rhts-submit-log -l /tmp/report.html
+
+rpm -qa > /tmp/packages.list
+rhts-submit-log -l /tmp/packages.list
 
 exit $rc
