@@ -15,5 +15,8 @@ usermod -aG wheel test
 echo "Installing test requirements"
 dnf install -y python-behave systemd-python
 
+echo "Enable abrt autoreporting"
+abrt-auto-reporting enabled
+
 echo "Running behave tests"
 sudo -u test behave -f plain

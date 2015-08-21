@@ -37,8 +37,12 @@ def wait_for_journalctl_message(context, message_part, timeout=60):
         journal.this_boot()
         journal.log_level(journalctl.LOG_DEBUG)
         journal.seek_tail()
-        journal.add_match('MESSAGE', message_part)
-        print(journal.get_next())
+        journal.add_match(MESSAGE=message_part)
+        for attempt in xrange(0, timeout):
+            if journal.get_next() != {}:
+                journal.close()
+                return
+            sleep(1)
         raise Exception("Message '%s' was not found in %s secs" % (message_part, timeout))
     finally:
         journal.close()
