@@ -21,6 +21,7 @@ def set_gdm_to_use_session(context, session_name):
 @step(u'Set gdm options')
 def set_gdm_options(context):
     config = ConfigParser.ConfigParser()
+    config.optionxform = str
 
     for row in context.table:
         if not config.has_section(row['section']):
