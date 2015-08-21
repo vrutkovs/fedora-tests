@@ -24,7 +24,6 @@ def wait_for_process_to_appear(context, process, timeout=60):
                 return
         except subprocess.CalledProcessError as e:
             print(e.output)
-            raise e
         sleep(1)
     raise Exception("Process %s didn't show up in %s secs" % (process, timeout))
 
@@ -40,7 +39,6 @@ def wait_for_journalctl_message(context, message_part, timeout=60):
                 return
         except subprocess.CalledProcessError as e:
             print(e.output)
-            raise e
         sleep(1)
     raise Exception("Process %s didn't show up in %s secs" % (process, timeout))
 
