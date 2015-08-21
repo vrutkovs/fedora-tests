@@ -30,7 +30,7 @@ rhts-submit-log -l /tmp/journal.log
 abrt-cli ls > /tmp/abrt.log
 rhts-submit-log -l /tmp/abrt.log
 
-rpm -qa > /tmp/packages.list
+rpm -qa | sort > /tmp/packages.list
 rhts-submit-log -l /tmp/packages.list
 
 exit $rc
