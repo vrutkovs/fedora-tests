@@ -5,7 +5,7 @@ dnf clean expire-cache
 dnf update -y
 
 echo "Enabling passwordless sudo"
-sed -i s/# %wheel/%wheel/g /etc/sudoers
+sed -i s/#\ %wheel/%wheel/g /etc/sudoers
 
 echo "Adding a new test user"
 useradd test
