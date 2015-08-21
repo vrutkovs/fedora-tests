@@ -18,6 +18,7 @@ echo ">> Enable abrt autoreporting"
 dnf install -y abrt abrt-addon*
 abrt-auto-reporting enabled
 systemctl start abrtd
+systemctl start abrt-journal-core abrt-oops
 
 echo ">> Running behave tests"
 sudo -u test behave -f html -o /tmp/report.html -f plain; rc =$?
