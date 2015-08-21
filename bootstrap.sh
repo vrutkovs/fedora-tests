@@ -12,7 +12,7 @@ echo "redhat" | passwd test --stdin
 usermod -aG wheel test
 
 echo ">> Installing test requirements"
-dnf install -y python-behave systemd-python
+dnf install -y python-behave systemd-python gnome-desktop-testing
 
 echo ">> Enable abrt autoreporting"
 dnf install -y abrt abrt-addon*

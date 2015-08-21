@@ -55,3 +55,29 @@ def install_package_group(context, group_name):
     except subprocess.CalledProcessError as e:
         print(e.output)
         raise e
+
+
+@step(u'Touch "/smoketest_passed" file')
+def touch_smoketest_passed(context):
+    try:
+        subprocess.check_output("sudo touch /smoketest_passed", shell=True)
+    except subprocess.CalledProcessError as e:
+        print(e.output)
+        raise e
+
+
+@step(u'Run installed tests for "{prefix}" from "{package}"')
+def run_installed_test_for_package(context, prefix, package):
+    try:
+        subprocess.check_output("sudo dnf install -y %s" % package, shell=True)
+    except subprocess.CalledProcessError as e:
+        print(e.output)
+        raise e
+
+    cmd = 'gnome-desktop-testing-runner %s --parallel 0 --status=yes' % prefix
+    cmd += '--report-directory=/tmp/installed-tests-results/%s' % prefix
+    try:
+        subprocess.check_output(cmd, shell=True)
+    except subprocess.CalledProcessError as e:
+        print(e.output)
+        raise e

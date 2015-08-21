@@ -2,6 +2,9 @@ from behave import step
 
 import ConfigParser
 import subprocess
+import os
+from sys import exit
+from time import sleep
 
 GDM_CONFIG_FILE = '/etc/gdm/custom.conf'
 
@@ -38,3 +41,70 @@ def set_gdm_options(context):
     except subprocess.CalledProcessError as e:
         print(e.output)
         raise e
+
+
+@step(u'Start gdm for "{username}" user and "{session}" session')
+def start_gdm(context, username, session):
+    context.execute_steps(u"""
+        * Set gdm options:
+            | section | key                  | value |
+            | daemon  | AutomaticLogin       | true  |
+            | daemon  | AutomaticLoginEnable | %s    |
+            | debug   | Enable               | true  |
+        * Set gdm to use "%s" session
+        * Start gdm service
+        * Wait for process "gdm" to appear
+        * Wait for process "gnome-session" to appear
+        * Wait for "Entering running" message in journalctl
+        * Wait for "GNOME Shell started at" message in journalctl
+    """ % (username, session))
+    set_env_vars()
+
+
+def set_env_vars():
+    process = subprocess.Popen("pgrep -u test gnome-session", shell=True, stdout=subprocess.PIPE)
+    session_id = process.communicate()[0].strip('\n')
+    print("gnome-session id: %s" % session_id)
+
+    if not session_id:
+        print("Can't find gnome-session id, trying gnome-shell")
+        process = subprocess.Popen("pgrep -u test gnome-shell", shell=True, stdout=subprocess.PIPE)
+        session_id = process.communicate()[0].strip()
+        print("gnome-shell id: %s" % session_id)
+
+    if not session_id:
+        print("No session pid found, exiting")
+        exit(1)
+
+    process = subprocess.Popen("cat /proc/%s/environ" % session_id, shell=True, stdout=subprocess.PIPE)
+    environ = process.communicate()[0]
+    environs = environ.replace('\x00', '\n').strip().split('\n')
+
+    for var in ['DISPLAY', 'XAUTHORITY', 'DBUS_SESSION_BUS_ADDRESS']:
+        for env in environs:
+            if '%s=' % var in env:
+                os.environ[var] = env.replace('%s=' % var, '')
+
+    gdm_session = None
+    for env in environs:
+        if 'GDMSESSION=' in env:
+            gdm_session = env.replace('GDMSESSION=', '')
+
+    if gdm_session and 'wayland' in gdm_session:
+        print("Wayland session detected")
+        os.environ['GDK_BACKEND'] = 'wayland'
+
+
+def make_screenshot(name="screenshot"):
+    set_env_vars()
+    my_env = os.environ.copy()
+    screenshot_path = "/tmp/%s.png" % name
+    process = subprocess.Popen(
+        "gnome-screenshot -p -f %s" % screenshot_path,
+        shell=True, stdout=subprocess.PIPE, env=my_env)
+    output = process.communicate()[0]
+    print("screenshot command output: %s" % output.strip())
+    sleep(5)
+
+    if os.path.isfile(screenshot_path):
+        print("Screenshot saved to %s" % screenshot_path)
