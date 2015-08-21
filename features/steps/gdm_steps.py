@@ -1,7 +1,6 @@
 from behave import step
 
 import ConfigParser
-import tempfile
 import subprocess
 
 GDM_CONFIG_FILE = '/etc/gdm/custom.conf'

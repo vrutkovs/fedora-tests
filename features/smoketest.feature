@@ -1,6 +1,7 @@
 Feature: GNOME Smoketest
 
   Background:
+    * Make sure "basic-desktop-environment" package group is installed
     * Make sure "gnome" package group is installed
 
   Scenario: Automatic login
