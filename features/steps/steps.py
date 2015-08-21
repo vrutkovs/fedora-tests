@@ -32,7 +32,7 @@ def wait_for_process_to_appear(context, process, timeout=300):
 @step(u'Wait for "{message_part}" message in journalctl')
 @step(u'Wait for "{message_part}" message in journalctl in {timeout} seconds')
 def wait_for_journalctl_message(context, message_part, timeout=300):
-    journal = journalctl.Reader()
+    journal = journalctl.Reader(flags=journalctl.SYSTEM)
     try:
         journal.this_boot()
         journal.log_level(journalctl.LOG_DEBUG)
