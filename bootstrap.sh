@@ -21,7 +21,7 @@ systemctl start abrtd
 systemctl start abrt-journal-core abrt-oops
 
 echo ">> Running behave tests"
-sudo -u test behave -f html -o /tmp/report.html -f plain; rc =$?
+sudo -u test behave -f html -o /tmp/report.html -f plain; rc=$?
 rhts-submit-log -l /tmp/report.html
 
 abrt-cli ls > /tmp/abrt.log
