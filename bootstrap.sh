@@ -21,10 +21,12 @@ abrt-auto-reporting enabled
 echo ">> Enable abrt FAF reporting"
 sed -i 's/# URL/URL/' /etc/libreport/plugins/ureport.conf
 sed -i 's/# SSLVerify/SSLVerify/' /etc/libreport/plugins/ureport.conf
+sed -i 's/# ContactEmail = foo@example.com/ContactEmail = vrutkovs@redhat.com/' /etc/libreport/plugins/ureport.conf
 
 echo ">> Restarting abrt"
-systemctl start abrtd
-systemctl start abrt-journal-core abrt-oops
+systemctl restart abrtd
+systemctl restart abrt-journal-core
+systemctl restart abrt-oops
 
 echo ">> Running behave tests"
 sudo -u test behave -f html -o /tmp/report.html -f plain; rc=$?
