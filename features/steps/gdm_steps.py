@@ -8,7 +8,7 @@ GDM_CONFIG_FILE = '/etc/gdm/custom.conf'
 
 @step(u'Set gdm to use "{session_name}" session')
 def set_gdm_to_use_session(context, session_name):
-    cmd = "dbus-send --print-reply --reply-timeout=60000 --system --type=method_call --print-reply "
+    cmd = "sudo dbus-send --print-reply --reply-timeout=60000 --system --type=method_call --print-reply "
     cmd += "--dest=org.freedesktop.Accounts /org/freedesktop/Accounts/User1000 "
     cmd += "org.freedesktop.Accounts.User.SetXSession string:%s" % session_name
     try:
