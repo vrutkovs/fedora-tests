@@ -1,7 +1,6 @@
 #!/bin/sh
 
 echo ">> Updating the system"
-dnf clean expire-cache
 dnf update -y
 
 echo ">> Enabling passwordless sudo"
