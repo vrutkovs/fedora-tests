@@ -94,6 +94,10 @@ def set_env_vars():
         print("Wayland session detected")
         os.environ['GDK_BACKEND'] = 'wayland'
 
+    # Get some more debugging output
+    os.environ['G_MESSAGES_DEBUG'] = 'all'
+    os.environ['G_DEBUG'] = 'fatal-critical'
+
 
 def make_screenshot(name="screenshot"):
     set_env_vars()
