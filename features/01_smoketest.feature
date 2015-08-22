@@ -14,7 +14,7 @@ Feature: GNOME Smoketest
     * Wait for process "gdm" to appear
     * Wait for process "gnome-session" to appear
     * Wait for "Entering running state" message in journalctl
-    * Wait for "GNOME Shell started at .*" message in journalctl
+    * Wait for "GNOME Shell started at" message in journalctl
     * Touch "/smoketest_passed" file
 
   Scenario: Automatic login - wayland disabled
@@ -28,7 +28,7 @@ Feature: GNOME Smoketest
     * Wait for process "gdm" to appear
     * Wait for process "gnome-session" to appear
     * Wait for "Entering running state" message in journalctl
-    * Wait for "GNOME Shell started at .*" message in journalctl
+    * Wait for "GNOME Shell started at" message in journalctl
 
   Scenario: Timed login
     * Set gdm options:
@@ -41,7 +41,7 @@ Feature: GNOME Smoketest
     * Wait for process "gdm" to appear
     * Wait for process "gnome-session" to appear
     * Wait for "Entering running state" message in journalctl
-    * Wait for "GNOME Shell started at .*" message in journalctl
+    * Wait for "GNOME Shell started at" message in journalctl
 
   Scenario: Timed login - wayland disabled
     * Set gdm options:
@@ -55,7 +55,7 @@ Feature: GNOME Smoketest
     * Wait for process "gdm" to appear
     * Wait for process "gnome-session" to appear
     * Wait for "Entering running state" message in journalctl
-    * Wait for "GNOME Shell started at .*" message in journalctl
+    * Wait for "GNOME Shell started at" message in journalctl
 
   Scenario: Gnome-classic
     * Set gdm options:
@@ -68,7 +68,7 @@ Feature: GNOME Smoketest
     * Wait for process "gdm" to appear
     * Wait for process "gnome-session" to appear
     * Wait for "Entering running state" message in journalctl
-    * Wait for "GNOME Shell started at .*" message in journalctl
+    * Wait for "GNOME Shell started at" message in journalctl
 
   Scenario: Gnome-wayland
     * Set gdm options:
@@ -81,4 +81,4 @@ Feature: GNOME Smoketest
     * Wait for process "gdm" to appear
     * Wait for process "gnome-session" to appear
     * Wait for "Entering running state" message in journalctl
-    * Wait for "GNOME Shell started at .*" message in journalctl
+    * Wait for "GNOME Shell started at" message in journalctl
