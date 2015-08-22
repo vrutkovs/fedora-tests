@@ -99,10 +99,11 @@ def set_env_vars():
     os.environ['G_DEBUG'] = 'fatal-critical'
 
 
-def make_screenshot(name="screenshot"):
+@step(u'Make screenshot')
+def make_screenshot(context, name="screenshot"):
     set_env_vars()
     my_env = os.environ.copy()
-    screenshot_path = "/tmp/%s.png" % name
+    screenshot_path = "/tmp/%s.jpg" % name
     process = subprocess.Popen(
         "gnome-screenshot -p -f %s" % screenshot_path,
         shell=True, stdout=subprocess.PIPE, env=my_env)
@@ -112,3 +113,4 @@ def make_screenshot(name="screenshot"):
 
     if os.path.isfile(screenshot_path):
         print("Screenshot saved to %s" % screenshot_path)
+        context.embed('image/jpg', open(screenshot_path, 'r').read(), caption="Screenshot")

@@ -30,7 +30,7 @@ def wait_for_process_to_appear(context, process, timeout=300):
 
 @step(u'Wait for "{message_part}" message in journalctl')
 @step(u'Wait for "{message_part}" message in journalctl in {timeout} seconds')
-def wait_for_journalctl_message(context, message_part, timeout=60):
+def wait_for_journalctl_message(context, message_part, timeout=300):
     cmd = "sudo journalctl --no-pager -o short-monotonic -q -b | grep '%s'" % message_part
     for attempt in xrange(0, timeout):
         try:
