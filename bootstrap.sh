@@ -30,8 +30,9 @@ systemctl restart abrt-journal-core
 systemctl restart abrt-oops
 
 echo ">> Running behave tests"
-sudo -u test behave -f html -o /tmp/report.html -f plain; rc=$?
+sudo -u test behave -f html -o /tmp/report.html -f plain --junit --junit-directory=/tmp/junit; rc=$?
 rhts-submit-log -l /tmp/report.html
+rhts-submit-log -l /tmp/junit/*
 
 journalctl -b --no-pager -o short-monotonic > /tmp/journal.log
 rhts-submit-log -l /tmp/journal.log
