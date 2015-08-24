@@ -15,6 +15,9 @@ def before_scenario(context, scenario):
     context.abrt_cli = subprocess.check_output("abrt-cli ls", shell=True)
     context.start_time = datetime.now().strftime("%H:%M:%S")
 
+    epoch_delta = datetime.now() - datetime.utcfromtimestamp(0)
+    context.seconds_since_epoch = epoch_delta.total_seconds()
+
 
 def after_scenario(context, scenario):
     # Save abrt diff here

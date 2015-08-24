@@ -39,7 +39,7 @@ def wait_for_journalctl_message(context, message_part, timeout=60):
     try:
         journal.this_boot()
         journal.log_level(journalctl.LOG_DEBUG)
-        journal.seek_tail()
+        journal.seek_realtime(context.seconds_since_epoch)
         journal.add_match(MESSAGE=message_part)
         for attempt in xrange(0, timeout):
             if journal.get_next() != {}:
