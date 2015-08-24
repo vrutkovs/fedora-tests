@@ -52,7 +52,7 @@ def start_gdm(context, username, session):
             | daemon  | AutomaticLoginEnable | true  |
             | debug   | Enable               | true  |
         * Set gdm to use "%s" session
-    """ % username, session)
+    """ % (username, session))
     exception = None
     for attempt in xrange(0, 3):
         try:
