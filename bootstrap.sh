@@ -10,6 +10,7 @@ echo ">> Adding a new test user"
 useradd test
 echo "redhat" | passwd test --stdin
 usermod -aG wheel test
+usermod -aG adm test
 
 echo ">> Installing test requirements"
 dnf install -y python-behave gnome-desktop-testing
