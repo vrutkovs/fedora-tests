@@ -81,9 +81,5 @@ def run_installed_test_for_package(context, prefix, package):
         raise e
     finally:
         if os.path.isfile(testout):
-            logfile = open(testout, 'r').read()
-            try:
-                logfile = logfile.encode('ascii', 'ignore')
-            except:
-                pass
+            logfile = open(testout, 'r').read().decode('utf8')
             context.embed('text/plain', logfile, caption="Test output")

@@ -22,9 +22,9 @@ Feature: GNOME Initial Tests
 #        | gdk-pixbuf            | gdk-pixbuf-tests            |
         | gjs                   | gjs-tests                   |
         | glib-networking       | glib-networking-tests       |
-#        | glib                  | glib2-tests                 |
+        | glib                  | glib2-tests                 |
 #        | gnome-calculator      | gnome-calculator-tests      |
-#        | gnome-desktop         | gnome-desktop3-tests        |
+        | gnome-desktop         | gnome-desktop3-tests        |
 #        | gnome-software        | gnome-software-tests        |
         | gtk+                  | gtk3-tests                  |
         | gtksourceview         | gtksourceview3-tests        |
