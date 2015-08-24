@@ -48,8 +48,8 @@ def start_gdm(context, username, session):
     context.execute_steps(u"""
         * Set gdm options:
             | section | key                  | value |
-            | daemon  | AutomaticLogin       | true  |
-            | daemon  | AutomaticLoginEnable | %s    |
+            | daemon  | AutomaticLogin       | %s    |
+            | daemon  | AutomaticLoginEnable | true  |
             | debug   | Enable               | true  |
         * Set gdm to use "%s" session
         * Start gdm service
