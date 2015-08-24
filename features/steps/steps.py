@@ -72,8 +72,7 @@ def run_installed_test_for_package(context, prefix, package):
 
     testout = '/tmp/testout.log'
 
-    cmd = 'gnome-desktop-testing-runner %s --parallel 0 --status=yes ' % prefix
-    cmd += '--report-directory=/tmp/installed-tests-results/%s &> %s' % (prefix, testout)
+    cmd = 'gnome-desktop-testing-runner %s --parallel 0 --status=yes &> %s' % (prefix, testout)
     try:
         if os.path.isfile(testout):
             os.remove(testout)
