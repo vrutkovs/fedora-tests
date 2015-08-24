@@ -30,7 +30,7 @@ systemctl restart abrt-journal-core
 systemctl restart abrt-oops
 
 echo ">> Running behave tests"
-sudo -u test behave -f html -o /tmp/report.html -f plain --junit --junit-directory=/tmp; rc=$?
+sudo -u test behave -f html -o /tmp/report.html --no-capture -f plain --junit --junit-directory=/tmp; rc=$?
 rhts-submit-log -l /tmp/report.html
 rhts-submit-log -l /tmp/*.xml
 
