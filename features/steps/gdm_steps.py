@@ -51,15 +51,25 @@ def start_gdm(context, username, session):
             | daemon  | AutomaticLogin       | %s    |
             | daemon  | AutomaticLoginEnable | true  |
             | debug   | Enable               | true  |
-    """ % username)
-    context.execute_steps(u"""
         * Set gdm to use "%s" session
-        * Start gdm service
-        * Wait for process "gdm" to appear
-        * Wait for process "gnome-session" to appear
-        * Wait for "Entering running" message in journalctl
-        * Wait for "GNOME Shell started at" message in journalctl
-    """ % session)
+    """ % username, session)
+    exception = None
+    for attempt in xrange(0, 3):
+        try:
+            context.execute_steps(u"""
+                * Start gdm service
+                * Wait for process "gdm" to appear
+                * Wait for process "gnome-session" to appear
+                * Wait for "Entering running" message in journalctl
+                * Wait for "GNOME Shell started at" message in journalctl
+            """)
+            exception = None
+            break
+        except Exception as e:
+            exception = e
+
+    if exception:
+        raise exception
     set_env_vars()
 
 
