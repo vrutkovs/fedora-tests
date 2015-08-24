@@ -98,7 +98,6 @@ def set_env_vars():
 
     # Get some more debugging output
     os.environ['G_MESSAGES_DEBUG'] = 'all'
-    os.environ['G_DEBUG'] = 'fatal-critical'
 
     if 'WAYLAND_DISPLAY' not in os.environ:
         os.environ['WAYLAND_DISPLAY'] = 'wayland-0'
