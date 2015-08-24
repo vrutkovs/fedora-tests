@@ -34,4 +34,4 @@ Feature: GNOME Initial Tests
         | mutter                | mutter-tests                |
         | org.gnome.Weather     | gnome-weather-tests         |
 #        | ostree                | ostree-tests                |
-        | Photos                | gnome-photos-tests          |
+#        | Photos                | gnome-photos-tests          |
