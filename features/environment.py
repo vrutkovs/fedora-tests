@@ -13,7 +13,7 @@ def before_scenario(context, scenario):
             scenario.skip()
 
     context.abrt_cli = subprocess.check_output("abrt-cli ls", shell=True)
-    context.start_time = datetime.now()
+    context.start_time = datetime.now().strftime("%H:%M:%S")
 
 
 def after_scenario(context, scenario):
@@ -24,8 +24,7 @@ def after_scenario(context, scenario):
         context.embed('text/plain', diff, caption="ABRT")
 
     # Add journal entries to the journal
-    cmd = "sudo journalctl --no-pager -o short-monotonic -q -b --since=%s" %\
-        context.start_time.strftime("%H:%M:%S")
+    cmd = "sudo journalctl --no-pager -o short-monotonic --since='%s'" % context.start_time
     journal = subprocess.check_output(cmd, shell=True).decode('utf8')
     context.embed('text/plain', journal, caption="journal")
 
