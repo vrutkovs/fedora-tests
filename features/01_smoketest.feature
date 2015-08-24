@@ -8,7 +8,7 @@ Feature: GNOME Smoketest
     * Set gdm options:
         | section | key                  | value |
         | daemon  | AutomaticLogin       | test  |
-        | daemon  | AutomaticLogin       | true  |
+        | daemon  | AutomaticLoginEnable | true  |
         | debug   | Enable               | true  |
     * Start gdm service
     * Wait for process "gdm" to appear
@@ -22,7 +22,7 @@ Feature: GNOME Smoketest
     * Set gdm options:
         | section | key                  | value |
         | daemon  | AutomaticLogin       | test  |
-        | daemon  | AutomaticLogin       | true  |
+        | daemon  | AutomaticLoginEnable | true  |
         | daemon  | WaylandEnable        | false |
         | debug   | Enable               | true  |
     * Start gdm service
@@ -35,8 +35,8 @@ Feature: GNOME Smoketest
   Scenario: Timed login
     * Set gdm options:
         | section | key              | value |
-        | daemon  | TimedLogin       | true  |
-        | daemon  | TimedLoginEnable | test  |
+        | daemon  | TimedLogin       | test  |
+        | daemon  | TimedLoginEnable | true  |
         | daemon  | TimedLoginDelay  | 10    |
         | debug   | Enable           | true  |
     * Start gdm service
@@ -49,8 +49,8 @@ Feature: GNOME Smoketest
   Scenario: Timed login - wayland disabled
     * Set gdm options:
         | section | key              | value |
-        | daemon  | TimedLogin       | true  |
-        | daemon  | TimedLoginEnable | test  |
+        | daemon  | TimedLogin       | test  |
+        | daemon  | TimedLoginEnable | true  |
         | daemon  | TimedLoginDelay  | 10    |
         | daemon  | WaylandEnable    | false |
         | debug   | Enable           | true  |
@@ -65,7 +65,7 @@ Feature: GNOME Smoketest
     * Set gdm options:
         | section | key                  | value |
         | daemon  | AutomaticLogin       | test  |
-        | daemon  | AutomaticLogin       | true  |
+        | daemon  | AutomaticLoginEnable | true  |
         | debug   | Enable               | true  |
     * Set gdm to use "gnome-classic" session
     * Start gdm service
@@ -79,7 +79,7 @@ Feature: GNOME Smoketest
     * Set gdm options:
         | section | key                  | value |
         | daemon  | AutomaticLogin       | test  |
-        | daemon  | AutomaticLogin       | true  |
+        | daemon  | AutomaticLoginEnable | true  |
         | debug   | Enable               | true  |
     * Set gdm to use "gnome-wayland" session
     * Start gdm service
