@@ -34,7 +34,7 @@ def wait_for_process_to_appear(context, process, timeout=60):
 
 @step(u'Wait for "{message_part}" message in journalctl')
 @step(u'Wait for "{message_part}" message in journalctl in {timeout} seconds')
-def wait_for_journalctl_message(context, message_part, timeout=300):
+def wait_for_journalctl_message(context, message_part, timeout=60):
     journal = journalctl.Reader()
     try:
         journal.this_boot()
