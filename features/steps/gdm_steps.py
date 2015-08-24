@@ -72,7 +72,6 @@ def set_env_vars():
         print("Can't find gnome-session id, trying gnome-shell")
         process = subprocess.Popen("pgrep -u test gnome-shell", shell=True, stdout=subprocess.PIPE)
         session_id = process.communicate()[0].strip()
-        print("gnome-shell id: %s" % session_id)
 
     if not session_id:
         print("No session pid found, exiting")
