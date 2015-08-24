@@ -30,10 +30,10 @@ systemctl restart abrt-journal-core
 systemctl restart abrt-oops
 
 echo ">> Running smoketests"
-sudo -u test behave -t smoketest -f html -o /tmp/smoketest.html -f plain; rc1=$?
+sudo -u test behave -t smoketest -f html -k -o /tmp/smoketest.html -f plain; rc1=$?
 rhts-submit-log -l /tmp/smoketest.html
 
-sudo -u test behave -t ~smoketest -f html -o /tmp/tests.html -f plain; rc2=$?
+sudo -u test behave -t ~smoketest -f html -k -o /tmp/tests.html -f plain; rc2=$?
 rhts-submit-log -l /tmp/tests.html
 
 journalctl -b --no-pager -o short-monotonic > /tmp/journal.log
