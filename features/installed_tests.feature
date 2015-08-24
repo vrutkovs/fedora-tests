@@ -24,7 +24,7 @@ Feature: GNOME Initial Tests
         | glib-networking       | glib-networking-tests       |
 #        | glib                  | glib2-tests                 |
 #        | gnome-calculator      | gnome-calculator-tests      |
-        | gnome-desktop         | gnome-desktop3-tests        |
+#        | gnome-desktop         | gnome-desktop3-tests        |
 #        | gnome-software        | gnome-software-tests        |
         | gtk+                  | gtk3-tests                  |
         | gtksourceview         | gtksourceview3-tests        |
