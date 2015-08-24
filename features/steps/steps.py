@@ -81,4 +81,4 @@ def run_installed_test_for_package(context, prefix, package):
         raise e
     finally:
         if os.path.isfile(testout):
-            context.embed('text/plain', open(testout, 'r').read(), caption="Test output")
+            context.embed('text/plain', open(testout, 'r').read().encode('ascii', 'ignore'), caption="Test output")
