@@ -13,7 +13,7 @@ usermod -aG wheel test
 usermod -aG adm test
 
 echo ">> Installing test requirements"
-dnf install -y python-behave gnome-desktop-testing
+dnf install -y python-behave systemd-python gnome-desktop-testing
 
 echo ">> Enable abrt autoreporting"
 dnf install -y abrt abrt-addon*
