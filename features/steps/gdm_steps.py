@@ -15,6 +15,7 @@ def set_gdm_to_use_session(context, session_name):
     cmd += "--dest=org.freedesktop.Accounts /org/freedesktop/Accounts/User1000 "
     cmd += "org.freedesktop.Accounts.User.SetXSession string:%s" % session_name
     try:
+        print("Running '%s'" % cmd)
         subprocess.check_output(cmd, shell=True)
     except subprocess.CalledProcessError as e:
         print(e.output)
@@ -37,6 +38,7 @@ def set_gdm_options(context):
 
     cmd = "sudo cp %s %s" % (tmppath, GDM_CONFIG_FILE)
     try:
+        print("Running '%s'" % cmd)
         subprocess.check_output(cmd, shell=True)
     except subprocess.CalledProcessError as e:
         print(e.output)
@@ -76,7 +78,6 @@ def start_gdm(context, username, session):
 def set_env_vars():
     process = subprocess.Popen("pgrep -u test gnome-session", shell=True, stdout=subprocess.PIPE)
     session_id = process.communicate()[0].strip('\n')
-    print("gnome-session id: %s" % session_id)
 
     if not session_id:
         print("Can't find gnome-session id, trying gnome-shell")
@@ -120,8 +121,7 @@ def make_screenshot(context, name="screenshot"):
     process = subprocess.Popen(
         "gnome-screenshot -p -f %s" % screenshot_path,
         shell=True, stdout=subprocess.PIPE, env=my_env)
-    output = process.communicate()[0]
-    print("screenshot command output: %s" % output.strip())
+    process.communicate()[0]
     sleep(5)
 
     if os.path.isfile(screenshot_path):

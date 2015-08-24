@@ -8,6 +8,7 @@ import os
 def start_systemd_service(context, service_name):
     cmd = "sudo systemctl stop %s && sudo systemctl start %s" % (service_name, service_name)
     try:
+        print("Running '%s'" % cmd)
         subprocess.check_output(cmd, shell=True)
     except subprocess.CalledProcessError as e:
         print(e.output)
@@ -20,6 +21,7 @@ def wait_for_process_to_appear(context, process, timeout=60):
     cmd = "pgrep %s" % process
     for attempt in xrange(0, timeout):
         try:
+            print("Running '%s'" % cmd)
             out = subprocess.check_output(cmd, shell=True)
             if out != '':
                 return
@@ -35,6 +37,7 @@ def wait_for_journalctl_message(context, message_part, timeout=60):
     cmd = "sudo journalctl --no-pager -o short-monotonic -q -b --since=-'10seconds' | grep '%s'" % message_part
     for attempt in xrange(0, timeout):
         try:
+            print("Running '%s'" % cmd)
             out = subprocess.check_output(cmd, shell=True)
             if out != '':
                 return
@@ -46,8 +49,10 @@ def wait_for_journalctl_message(context, message_part, timeout=60):
 
 @step(u'Make sure "{group_name}" package group is installed')
 def install_package_group(context, group_name):
+    cmd = "sudo dnf groupinstall -y %s" % group_name
     try:
-        subprocess.check_output("sudo dnf groupinstall -y %s" % group_name, shell=True)
+        print("Running '%s'" % cmd)
+        subprocess.check_output(cmd, shell=True)
     except subprocess.CalledProcessError as e:
         print(e.output)
         raise e
@@ -55,8 +60,10 @@ def install_package_group(context, group_name):
 
 @step(u'Touch "/smoketest_passed" file')
 def touch_smoketest_passed(context):
+    cmd = "sudo touch /smoketest_passed"
     try:
-        subprocess.check_output("sudo touch /smoketest_passed", shell=True)
+        print("Running '%s'" % cmd)
+        subprocess.check_output(cmd, shell=True)
     except subprocess.CalledProcessError as e:
         print(e.output)
         raise e
@@ -64,8 +71,10 @@ def touch_smoketest_passed(context):
 
 @step(u'Run installed tests for "{prefix}" from "{package}"')
 def run_installed_test_for_package(context, prefix, package):
+    cmd = "sudo dnf install -y %s" % package
     try:
-        subprocess.check_output("sudo dnf install -y %s" % package, shell=True)
+        print("Running '%s'" % cmd)
+        subprocess.check_output(cmd, shell=True)
     except subprocess.CalledProcessError as e:
         print(e.output)
         raise e
