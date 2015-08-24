@@ -1,6 +1,7 @@
 from behave import step
 from time import sleep
 import subprocess
+import os
 
 
 @step(u'Start {service_name} service')
@@ -69,10 +70,16 @@ def run_installed_test_for_package(context, prefix, package):
         print(e.output)
         raise e
 
+    testout = '/tmp/testout.log'
+
     cmd = 'gnome-desktop-testing-runner %s --parallel 0 --status=yes ' % prefix
-    cmd += '--report-directory=/tmp/installed-tests-results/%s' % prefix
+    cmd += '--report-directory=/tmp/installed-tests-results/%s &> %s' % (prefix, testout)
     try:
+        if os.path.isfile(testout):
+            os.remove(testout)
         subprocess.check_output(cmd, shell=True)
     except subprocess.CalledProcessError as e:
-        print(e.output)
         raise e
+    finally:
+        if os.path.isfile(testout):
+            context.embed('plain/txt', open(testout, 'r').read(), caption="Test output")
