@@ -69,7 +69,7 @@ def run_installed_test_for_package(context, prefix, package):
         print(e.output)
         raise e
 
-    cmd = 'gnome-desktop-testing-runner %s --parallel 0 --status=yes' % prefix
+    cmd = 'gnome-desktop-testing-runner %s --parallel 0 --status=yes ' % prefix
     cmd += '--report-directory=/tmp/installed-tests-results/%s' % prefix
     try:
         subprocess.check_output(cmd, shell=True)
