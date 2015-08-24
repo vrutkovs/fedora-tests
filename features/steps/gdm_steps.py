@@ -82,7 +82,7 @@ def set_env_vars():
     environ = process.communicate()[0]
     environs = environ.replace('\x00', '\n').strip().split('\n')
 
-    for var in ['DISPLAY', 'XAUTHORITY', 'DBUS_SESSION_BUS_ADDRESS']:
+    for var in ['DISPLAY', 'XAUTHORITY', 'DBUS_SESSION_BUS_ADDRESS', 'WAYLAND_DISPLAY']:
         for env in environs:
             if '%s=' % var in env:
                 os.environ[var] = env.replace('%s=' % var, '')
@@ -99,6 +99,9 @@ def set_env_vars():
     # Get some more debugging output
     os.environ['G_MESSAGES_DEBUG'] = 'all'
     os.environ['G_DEBUG'] = 'fatal-critical'
+
+    if 'WAYLAND_DISPLAY' not in os.environ:
+        os.environ['WAYLAND_DISPLAY'] = 'wayland-0'
 
 
 @step(u'Make screenshot')
