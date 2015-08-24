@@ -32,7 +32,7 @@ def wait_for_process_to_appear(context, process, timeout=60):
 @step(u'Wait for "{message_part}" message in journalctl')
 @step(u'Wait for "{message_part}" message in journalctl in {timeout} seconds')
 def wait_for_journalctl_message(context, message_part, timeout=60):
-    cmd = "sudo journalctl --no-pager -o short-monotonic -q -b --since=-'1minute' | grep '%s'" % message_part
+    cmd = "sudo journalctl --no-pager -o short-monotonic -q -b --since=-'10seconds' | grep '%s'" % message_part
     for attempt in xrange(0, timeout):
         try:
             out = subprocess.check_output(cmd, shell=True)
