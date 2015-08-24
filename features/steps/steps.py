@@ -16,7 +16,7 @@ def start_systemd_service(context, service_name):
 
 @step(u'Wait for process "{process}" to appear')
 @step(u'Wait for process "{process}" to appear in {timeout} seconds')
-def wait_for_process_to_appear(context, process, timeout=300):
+def wait_for_process_to_appear(context, process, timeout=60):
     cmd = "pgrep %s" % process
     for attempt in xrange(0, timeout):
         try:
@@ -31,7 +31,7 @@ def wait_for_process_to_appear(context, process, timeout=300):
 
 @step(u'Wait for "{message_part}" message in journalctl')
 @step(u'Wait for "{message_part}" message in journalctl in {timeout} seconds')
-def wait_for_journalctl_message(context, message_part, timeout=300):
+def wait_for_journalctl_message(context, message_part, timeout=60):
     cmd = "sudo journalctl --no-pager -o short-monotonic -q -b --since=-'1minute' | grep '%s'" % message_part
     for attempt in xrange(0, timeout):
         try:
