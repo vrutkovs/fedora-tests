@@ -1,3 +1,4 @@
+@smoketest
 Feature: GNOME Smoketest
 
   Background:
