@@ -17,7 +17,8 @@ def before_scenario(context, scenario):
     context.start_time = datetime.now().strftime("%H:%M:%S")
     context.journal = journalctl.Reader()
     context.journal.log_level(journalctl.LOG_DEBUG)
-    context.journal.seek_tail()
+    context.journal.this_boot()
+    context.journal.seek_realtime(datetime.now())
 
 
 def after_scenario(context, scenario):

@@ -14,6 +14,7 @@ Feature: GNOME Smoketest
     * Start gdm service
     * Wait for process "gdm" to appear
     * Wait for process "gnome-session" to appear
+    * Wait for "Entering running state" message in journalctl
     * Wait for GNOME Shell to startup
     * Make screenshot
     * Touch "/smoketest_passed" file
@@ -28,6 +29,7 @@ Feature: GNOME Smoketest
     * Start gdm service
     * Wait for process "gdm" to appear
     * Wait for process "gnome-session" to appear
+    * Wait for "Entering running state" message in journalctl
     * Wait for GNOME Shell to startup
     * Make screenshot
 
@@ -41,8 +43,8 @@ Feature: GNOME Smoketest
     * Start gdm service
     * Wait for process "gdm" to appear
     * Wait for process "gnome-session" to appear
+    * Wait for "Entering running state" message in journalctl
     * Wait for GNOME Shell to startup
-
     * Make screenshot
 
   Scenario: Timed login - wayland disabled
@@ -56,6 +58,7 @@ Feature: GNOME Smoketest
     * Start gdm service
     * Wait for process "gdm" to appear
     * Wait for process "gnome-session" to appear
+    * Wait for "Entering running state" message in journalctl
     * Wait for GNOME Shell to startup
     * Make screenshot
 
@@ -69,6 +72,7 @@ Feature: GNOME Smoketest
     * Start gdm service
     * Wait for process "gdm" to appear
     * Wait for process "gnome-session" to appear
+    * Wait for "Entering running state" message in journalctl
     * Wait for GNOME Shell to startup
     * Make screenshot
 
@@ -82,5 +86,6 @@ Feature: GNOME Smoketest
     * Start gdm service
     * Wait for process "gdm" to appear
     * Wait for process "gnome-session" to appear
+    * Wait for "Entering running state" message in journalctl
     * Wait for GNOME Shell to startup
     * Make screenshot
