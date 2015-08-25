@@ -16,7 +16,7 @@ echo ">> Installing test requirements"
 dnf install -y python-behave systemd-python gnome-desktop-testing
 
 echo ">> Enable abrt autoreporting"
-dnf install -y abrt abrt-addon*
+dnf install -y abrt abrt-tui abrt-addon*
 abrt-auto-reporting enabled
 abrt-install-ccpp-hook install
 
