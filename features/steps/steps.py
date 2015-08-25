@@ -1,8 +1,8 @@
 from behave import step
 from time import sleep
+from datetime import datetime
 import subprocess
 import os
-from systemd import journal as journalctl
 
 
 @step(u'Start {service_name} service')
@@ -35,37 +35,25 @@ def wait_for_process_to_appear(context, process, timeout=60):
 @step(u'Wait for "{message_part}" message in journalctl')
 @step(u'Wait for "{message_part}" message in journalctl in {timeout} seconds')
 def wait_for_journalctl_message(context, message_part, timeout=60):
-    journal = journalctl.Reader()
-    try:
-        journal.log_level(journalctl.LOG_DEBUG)
-        journal.seek_realtime(context.seconds_since_epoch)
-        journal.add_match(MESSAGE=message_part)
-        for attempt in xrange(0, timeout):
-            if journal.get_next() != {}:
-                journal.close()
-                return
-            sleep(1)
-        raise Exception("Message '%s' was not found in %s secs" % (message_part, timeout))
-    finally:
-        journal.close()
+    context.journal.flush_matches()
+    context.journal.add_match(MESSAGE=message_part)
+    for attempt in xrange(0, timeout):
+        if context.journal.get_next() != {}:
+            return
+        sleep(1)
+    raise Exception("Message '%s' was not found in %s secs" % (message_part, timeout))
 
 
 @step(u'Wait for GNOME Shell to startup')
 @step(u'Wait for GNOME Shell to startup in {timeout} seconds')
 def wait_for_gnome_shell(context, timeout=60):
-    journal = journalctl.Reader()
-    try:
-        journal.log_level(journalctl.LOG_DEBUG)
-        journal.seek_realtime(context.seconds_since_epoch)
-        journal.add_match(MESSAGE_ID="f3ea493c22934e26811cd62abe8e203a")
-        for attempt in xrange(0, timeout):
-            if journal.get_next() != {}:
-                journal.close()
-                return
-            sleep(1)
-        raise Exception("GNOME Shell didn't start in %s secs" % timeout)
-    finally:
-        journal.close()
+    context.journal.flush_matches()
+    context.journal.add_match(MESSAGE_ID="f3ea493c22934e26811cd62abe8e203a")
+    for attempt in xrange(0, timeout):
+        if context.journal.get_next() != {}:
+            return
+        sleep(1)
+    raise Exception("GNOME Shell start message was not found in %s secs" % timeout)
 
 
 @step(u'Make sure "{group_name}" package group is installed')

@@ -3,6 +3,7 @@ import sys
 import subprocess
 from time import sleep
 from datetime import datetime
+from systemd import journal as journalctl
 
 
 def before_scenario(context, scenario):
@@ -14,9 +15,9 @@ def before_scenario(context, scenario):
 
     context.abrt_cli = subprocess.check_output("abrt-cli ls", shell=True)
     context.start_time = datetime.now().strftime("%H:%M:%S")
-
-    epoch_delta = datetime.utcnow() - datetime.utcfromtimestamp(0)
-    context.seconds_since_epoch = epoch_delta.total_seconds()
+    context.journal = journalctl.Reader()
+    context.journal.log_level(journalctl.LOG_DEBUG)
+    context.journal.seek_tail()
 
 
 def after_scenario(context, scenario):
@@ -30,6 +31,8 @@ def after_scenario(context, scenario):
     cmd = "sudo journalctl --no-pager -o short-monotonic --since='%s'" % context.start_time
     journal = subprocess.check_output(cmd, shell=True).decode('utf8')
     context.embed('text/plain', journal, caption="journal")
+
+    context.journal.close()
 
 
 def after_tag(context, tag):
