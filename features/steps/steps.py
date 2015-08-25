@@ -5,10 +5,8 @@ import os
 
 
 @step(u'Start {service_name} service')
-def start_systemd_service(context, service_name, restart=None):
-    cmd = "sudo systemctl start %s" % service_name
-    if restart:
-        cmd = "sudo systemctl stop %s && sudo systemctl start %s" % (service_name, service_name)
+def start_systemd_service(context, service_name):
+    cmd = "sudo systemctl stop %s && sudo systemctl start %s" % (service_name, service_name)
     try:
         print("Running '%s'" % cmd)
         subprocess.check_output(cmd, shell=True)
