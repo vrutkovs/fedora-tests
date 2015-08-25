@@ -28,7 +28,7 @@ def after_scenario(context, scenario):
     # Look for crashes since scenario start
     context.journal.flush_matches()
     context.journal.seek_realtime(context.start_time)
-    context.journal.add_match(MESSAGE='ANOM_ABEND')
+    context.journal.add_match(_AUDIT_TYPE='1701')
     match = context.journal.get_next()
     if match != {}:
         print(match)
