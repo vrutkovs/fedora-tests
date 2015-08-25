@@ -46,4 +46,4 @@ rhts-submit-log -l /tmp/abrt.log
 rpm -qa | sort > /tmp/packages.list
 rhts-submit-log -l /tmp/packages.list
 
-exit $((rc1 + rc2))
+exit $rc1
