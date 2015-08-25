@@ -30,4 +30,5 @@ systemctl restart abrtd
 systemctl restart abrt-journal-core
 systemctl restart abrt-oops
 
+systemctl stop gdm
 systemctl disable gdm
