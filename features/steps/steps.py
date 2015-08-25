@@ -37,7 +37,6 @@ def wait_for_process_to_appear(context, process, timeout=60):
 def wait_for_journalctl_message(context, message_part, timeout=60):
     journal = journalctl.Reader()
     try:
-        journal.this_boot()
         journal.log_level(journalctl.LOG_DEBUG)
         journal.seek_realtime(context.seconds_since_epoch)
         journal.add_match(MESSAGE=message_part)
@@ -47,6 +46,24 @@ def wait_for_journalctl_message(context, message_part, timeout=60):
                 return
             sleep(1)
         raise Exception("Message '%s' was not found in %s secs" % (message_part, timeout))
+    finally:
+        journal.close()
+
+
+@step(u'Wait for GNOME Shell to startup')
+@step(u'Wait for GNOME Shell to startup in {timeout} seconds')
+def wait_for_gnome_shell(context, timeout=60):
+    journal = journalctl.Reader()
+    try:
+        journal.log_level(journalctl.LOG_DEBUG)
+        journal.seek_realtime(context.seconds_since_epoch)
+        journal.add_match(MESSAGE_ID="f3ea493c22934e26811cd62abe8e203a")
+        for attempt in xrange(0, timeout):
+            if journal.get_next() != {}:
+                journal.close()
+                return
+            sleep(1)
+        raise Exception("GNOME Shell didn't start in %s secs" % timeout)
     finally:
         journal.close()
 

@@ -62,8 +62,7 @@ def start_gdm(context, username, session):
                 * Start gdm service
                 * Wait for process "gdm" to appear
                 * Wait for process "gnome-session" to appear
-                * Wait for "Entering running" message in journalctl
-                * Wait for "GNOME Shell started at" message in journalctl
+                * Wait for GNOME Shell to startup
             """)
             exception = None
             break
