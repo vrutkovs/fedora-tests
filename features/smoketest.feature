@@ -1,10 +1,10 @@
-@smoketest
 Feature: GNOME Smoketest
 
   Background:
     * Make sure "basic-desktop-environment" package group is installed
     * Make sure "gnome" package group is installed
 
+  @minimal_smoketest
   Scenario: Automatic login
     * Set gdm options:
         | section | key                  | value |

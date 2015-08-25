@@ -6,7 +6,6 @@ Feature: GNOME Initial Tests
         * Make sure "gnome" package group is installed
         * Start gdm for "test" user and "gnome" session
 
-    @stop_gdm
     Scenario Outline: Package installed tests
         * Run installed tests for "<component>" from "<package>"
 
