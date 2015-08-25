@@ -13,7 +13,7 @@ def before_scenario(context, scenario):
             sys.stdout.write("Skipping %s as smoketest failed\n" % scenario.name)
             scenario.skip()
 
-    context.abrt_cli = subprocess.check_output("abrt-cli ls", shell=True)
+    context.abrt_cli = subprocess.check_output("sudo abrt-cli ls", shell=True)
     context.start_time = datetime.now().strftime("%H:%M:%S")
     context.journal = journalctl.Reader()
     context.journal.log_level(journalctl.LOG_DEBUG)
