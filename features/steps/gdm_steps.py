@@ -59,7 +59,7 @@ def start_gdm(context, username, session):
     for attempt in xrange(0, 3):
         try:
             context.execute_steps(u"""
-                * Start gdm service
+                * Start gdm service (don't restart if started already)
                 * Wait for process "gdm" to appear
                 * Wait for process "gnome-session" to appear
                 * Wait for GNOME Shell to startup
