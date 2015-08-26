@@ -30,7 +30,7 @@ Feature: GNOME Application start stop tests
         | Documents              |
 # Requires a server
 #        | Emacs Client           |
-        | Emacs                  |
+#        | Emacs                  |
         | Empathy                |
         | Evolution              |
 # doesn't start
