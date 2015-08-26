@@ -1,7 +1,10 @@
 from behave import step
 from time import sleep
+from gi.repository import Gio
+from gi.repository import GLib
 import subprocess
 import os
+import json
 
 
 @step(u'Start {service_name} service')
@@ -115,9 +118,58 @@ def run_installed_test_for_package(context, prefix, package):
 
 @step(u'Start "{appname}" application')
 def start_app(context, appname):
-    raise NotImplementedError(u'STEP: Given Start "org.gnome.Nautilus" application')
+    # Check that app is in the list
+    _appListUnfiltered = Gio.AppInfo.get_all()
+    _appList = []
+    for app in _appListUnfiltered:
+        if app.get_nodisplay():
+            continue
+        if app.has_key('Categories') and \
+           'X-GNOME-Settings-Panel' in app.get_string('Categories'):
+            continue
+        _appList.append(app)
 
+    matchedApps = list(filter(lambda x: x.get_name() == appname, _appList))
+    if len(matchedApps) == 0:
+        raise Exception("Cannot find '%s' app" % appname)
 
-@step(u'Stop "{appname}" application')
-def stop_app(context):
-    raise NotImplementedError(u'STEP: Given Stop "org.gnome.Nautilus" application')
+    app_obj = matchedApps[0]
+
+    sessionBus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
+    _shell = Gio.DBusProxy.new_sync(sessionBus, 0, None,
+                                    "org.gnome.Shell", "/org/gnome/Shell",
+                                    "org.gnome.Shell", None)
+
+    # Close all apps
+    code = 'Shell.AppSystem.get_default().get_running().forEach(function (app) { app.request_quit(); });'
+    [success, result] = _shell.call_sync("Eval", GLib.Variant("(s)", (code,)), 0, -1, None)
+    if not success:
+        raise Exception("Failed to eval '%s': %s" % (code[0:20], result))
+
+    app_obj.launch([], None)
+
+    # Wait for app to appear in a list of running apps
+    result = False
+    for attempt in xrange(0, 30):
+        sleep(1)
+        runningApps = []
+        code = 'Shell.AppSystem.get_default().get_running().map(function (a) { return a.get_id(); });'
+        [success, result] = _shell.call_sync("Eval", GLib.Variant("(s)", (code,)), 0, -1, None)
+        if not success:
+            raise Exception("Failed to eval '%s': %s" % (code[0:20], result))
+        if result:
+            runningApps = json.loads(result)
+
+        if app_obj.get_id() in runningApps:
+            result = True
+            context.execute_steps(u'* Make screenshot')
+            break
+
+    # Close all apps
+    code = 'Shell.AppSystem.get_default().get_running().forEach(function (app) { app.request_quit(); });'
+    [success, result] = _shell.call_sync("Eval", GLib.Variant("(s)", (code,)), 0, -1, None)
+    if not success:
+        raise Exception("Failed to eval '%s': %s" % (code[0:20], result))
+
+    if not result:
+        raise Exception("App %s didn't start" % appname)
