@@ -13,7 +13,8 @@ usermod -aG wheel test
 usermod -aG adm test
 
 echo ">> Installing test requirements"
-dnf install -y python-behave systemd-python gnome-desktop-testing
+dnf install -y python-behave systemd-python gnome-desktop-testing pygobject2 \
+    pygobject3
 
 echo ">> Enable abrt autoreporting"
 dnf install -y abrt abrt-tui abrt-addon*
@@ -23,7 +24,8 @@ abrt-install-ccpp-hook install
 echo ">> Enable abrt FAF reporting"
 sed -i 's/# URL/URL/' /etc/libreport/plugins/ureport.conf
 sed -i 's/# SSLVerify/SSLVerify/' /etc/libreport/plugins/ureport.conf
-sed -i 's/# ContactEmail = foo@example.com/ContactEmail = vrutkovs@redhat.com/' /etc/libreport/plugins/ureport.conf
+sed -i 's/# ContactEmail = foo@example.com/ContactEmail = vrutkovs@redhat.com/'\
+       /etc/libreport/plugins/ureport.conf
 
 echo ">> Restarting abrt"
 systemctl restart abrtd
