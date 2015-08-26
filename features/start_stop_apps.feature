@@ -1,7 +1,8 @@
 @requires_smoketest
 Feature: GNOME Application start stop tests
 
-    Background:
+    @setup
+    Scenario: Make sure gnome-shell is started
         * Make sure "basic-desktop-environment" package group is installed
         * Make sure "gnome" package group is installed
         * Start gdm for "test" user and "gnome" session
