@@ -36,7 +36,7 @@ def after_scenario(context, scenario):
         diff = ''
         for attempt in xrange(0, 30):
             new_abrt_cli = subprocess.check_output("sudo abrt-cli ls", shell=True)
-            diff = new_abrt_cli[len(context.abrt_cli):].strip().decode('utf8')
+            diff = new_abrt_cli[:len(context.abrt_cli)].strip().decode('utf8')
             if diff != '':
                 context.embed('text/plain', diff, caption="ABRT")
                 break
