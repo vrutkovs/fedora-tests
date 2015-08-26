@@ -20,7 +20,7 @@ def start_systemd_service(context, service_name):
 
 @step(u'Start {service_name} service (don\'t restart if started already)')
 def start_systemd_service_unless_started(context, service_name):
-    cmd = "sudo systemctl start %s" % (service_name, service_name)
+    cmd = "sudo systemctl start %s" % service_name
     try:
         print("Running '%s'" % cmd)
         subprocess.check_output(cmd, shell=True)
