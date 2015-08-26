@@ -100,3 +100,13 @@ def run_installed_test_for_package(context, prefix, package):
         if os.path.isfile(testout):
             logfile = open(testout, 'r').read().decode('utf8')
             context.embed('text/plain', logfile, caption="Test output")
+
+
+@step(u'Start "{appname}" application')
+def start_app(context, appname):
+    raise NotImplementedError(u'STEP: Given Start "org.gnome.Nautilus" application')
+
+
+@step(u'Stop "{appname}" application')
+def stop_app(context):
+    raise NotImplementedError(u'STEP: Given Stop "org.gnome.Nautilus" application')
