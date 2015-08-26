@@ -30,7 +30,7 @@ Feature: GNOME Application start stop tests
         | Documents              |
 # Requires a server
 #        | Emacs Client           |
-#        | Emacs                  |
+        | Emacs                  |
         | Empathy                |
         | Evolution              |
 # doesn't start
@@ -47,7 +47,7 @@ Feature: GNOME Application start stop tests
         | Network Connections    |
         | Notes                  |
         | Passwords and Keys     |
-        | Problem Reporting      |
+#        | Problem Reporting      |
         | Remote Desktop Viewer  |
         | Rhythmbox              |
         | rxvt-unicode           |
