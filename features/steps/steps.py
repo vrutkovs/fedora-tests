@@ -149,7 +149,7 @@ def start_app(context, appname):
     app_obj.launch([], None)
 
     # Wait for app to appear in a list of running apps
-    result = False
+    test_result = False
     for attempt in xrange(0, 30):
         sleep(1)
         runningApps = []
@@ -161,7 +161,7 @@ def start_app(context, appname):
             runningApps = json.loads(result)
 
         if app_obj.get_id() in runningApps:
-            result = True
+            test_result = True
             context.execute_steps(u'* Make screenshot')
             break
 
@@ -171,5 +171,5 @@ def start_app(context, appname):
     if not success:
         raise Exception("Failed to eval '%s': %s" % (code[0:20], result))
 
-    if not result:
+    if not test_result:
         raise Exception("App %s didn't start" % appname)
