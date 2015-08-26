@@ -28,11 +28,13 @@ Feature: GNOME Application start stop tests
         | Disks                  |
         | Document Viewer        |
         | Documents              |
-        | Emacs Client           |
+# Requires a server
+#        | Emacs Client           |
         | Emacs                  |
         | Empathy                |
         | Evolution              |
-        | Fedora Release Notes   |
+# doesn't start
+#        | Fedora Release Notes   |
         | Files                  |
         | Firewall               |
         | Font Viewer            |
