@@ -60,18 +60,6 @@ def wait_for_journalctl_message(context, message_part, timeout=60):
 @step(u'Wait for GNOME Shell to startup')
 @step(u'Wait for GNOME Shell to startup in {timeout} seconds')
 def wait_for_gnome_shell(context, timeout=60):
-    # Try to connect via dbus
-    try:
-        set_env_vars()
-        sessionBus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
-        Gio.DBusProxy.new_sync(sessionBus, 0, None,
-                               "org.gnome.Shell", "/org/gnome/Shell",
-                               "org.gnome.Shell", None)
-        return
-    except Exception:
-        pass
-
-    # Didn't work - lets wait for new message
     context.journal.flush_matches()
     context.journal.add_match(MESSAGE_ID="f3ea493c22934e26811cd62abe8e203a")
     for attempt in xrange(0, timeout):
