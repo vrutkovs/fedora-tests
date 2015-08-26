@@ -10,72 +10,56 @@ Feature: GNOME Application start stop tests
         * Start "<app>" application
 
     Examples:
-        | app                     |
-        | Adobe Flash Player      |
-        | Archive Manager         |
-        | Boxes                   |
-        | Builder                 |
-        | Calculator              |
-        | Calendar                |
-        | California              |
-        | Character Map           |
-        | Cheese                  |
-        | Clocks                  |
-        | Color Profile Viewer    |
-        | Contacts                |
-        | D-Feet                  |
-        | dconf Editor            |
-        | DevAssistant            |
-        | Devhelp                 |
-        | Disk Usage Analyzer     |
-        | Disks                   |
-        | Document Viewer         |
-        | Documents               |
-        | EasyTAG                 |
-        | Empathy                 |
-        | Evolution               |
-        | Files                   |
-        | Firefox                 |
-        | Font Viewer             |
-        | Geary                   |
-        | gedit                   |
-        | gitg                    |
-        | GNOME Build Tool        |
-        | GNOME System Monitor    |
-        | Image Viewer            |
-        | LibreOffice Calc        |
-        | LibreOffice Draw        |
-        | LibreOffice Impress     |
-        | LibreOffice Writer      |
-        | Maps                    |
-        | Music                   |
-        | Network Connections     |
-        | Notes                   |
-        | Passwords and Keys      |
-        | Polari                  |
-        | Power Statistics        |
-        | Problem Reporting       |
-        | Remote Desktop Viewer   |
-        | Rhythmbox               |
-        | Rygel Preferences       |
-        | Screen Reader           |
-        | Screenshot              |
-        | SELinux Troubleshooter  |
-        | Settings                |
-        | Shotwell                |
-        | Shutter                 |
-        | Skype                   |
-        | Software                |
-        | Sound Converter         |
-        | Sublime Text 3          |
-        | System Monitor          |
-        | Telegram Desktop        |
-        | Telegram                |
-        | Terminal                |
-        | Transmission            |
-        | Tweak Tool              |
-        | Videos                  |
-        | Virtual Machine Manager |
-        | Weather                 |
-        | Web                     |
-        | Help                    |
+        | app                    |
+        | AisleRiot Solitaire    |
+        | Archive Manager        |
+        | Backups                |
+        | Boxes                  |
+        | Brasero                |
+        | Calculator             |
+        | Character Map          |
+        | Cheese                 |
+        | Clocks                 |
+        | Color Profile Viewer   |
+        | Contacts               |
+        | Dictionary             |
+        | Disk Usage Analyzer    |
+        | Disks                  |
+        | Document Viewer        |
+        | Documents              |
+        | Emacs Client           |
+        | Emacs                  |
+        | Empathy                |
+        | Evolution              |
+        | Fedora Release Notes   |
+        | Files                  |
+        | Firewall               |
+        | Font Viewer            |
+        | gedit                  |
+        | GNOME System Monitor   |
+        | Help                   |
+        | Image Viewer           |
+        | Logs                   |
+        | Maps                   |
+        | Network Connections    |
+        | Notes                  |
+        | Passwords and Keys     |
+        | Problem Reporting      |
+        | Remote Desktop Viewer  |
+        | Rhythmbox              |
+        | rxvt-unicode           |
+        | Rygel Preferences      |
+        | Screen Reader          |
+        | Screenshot             |
+        | SELinux Troubleshooter |
+        | Settings               |
+        | Shotwell               |
+        | Simple Scan            |
+        | Software               |
+        | Sound Recorder         |
+        | System Monitor         |
+        | Terminal               |
+        | Transmission           |
+        | Videos                 |
+        | Weather                |
+        | XTerm                  |
