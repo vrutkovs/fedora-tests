@@ -1,7 +1,8 @@
 @requires_smoketest
 Feature: GNOME Initial Tests
 
-    Background:
+    @setup
+    Scenario: Setup gnome-shell
         * Make sure "basic-desktop-environment" package group is installed
         * Make sure "gnome" package group is installed
         * Start gdm for "test" user and "gnome" session
