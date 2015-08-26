@@ -73,6 +73,15 @@ def start_gdm(context, username, session):
         raise exception
     set_env_vars()
 
+    # Disable screen lock
+    cmd = 'gsettings set org.gnome.desktop.session idle-delay 0'
+    try:
+        print("Running '%s'" % cmd)
+        subprocess.check_output(cmd, shell=True)
+    except subprocess.CalledProcessError as e:
+        print(e.output)
+        raise e
+
 
 def set_env_vars():
     process = subprocess.Popen("pgrep -u test gnome-session", shell=True, stdout=subprocess.PIPE)
