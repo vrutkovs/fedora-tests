@@ -2,7 +2,7 @@
 
 systemctl stop gdm
 
-sudo -u test behave features/start_stop_apps.feature -f html -k -o /tmp/wayland_start_stop.html -f plain; rc=$?
+sudo -u test behave features/wayland_start_stop_apps.feature -f html -k -o /tmp/wayland_start_stop.html -f plain; rc=$?
 rhts-submit-log -l /tmp/wayland_start_stop.html
 
 journalctl -b --no-pager -o short-monotonic > /tmp/journal.log
