@@ -74,7 +74,7 @@ def install_package_group(context, group_name):
     cmd = "sudo dnf groupinstall -y %s" % group_name
     try:
         print("Running '%s'" % cmd)
-        subprocess.check_output(cmd, shell=True)
+        subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
         print(e.output)
         raise e
