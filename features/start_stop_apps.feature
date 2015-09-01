@@ -29,18 +29,12 @@ Feature: GNOME Application start stop tests
         | Disks                  |
         | Document Viewer        |
         | Documents              |
-# Requires a server
-#        | Emacs Client           |
-        | Emacs                  |
         | Empathy                |
         | Evolution              |
-# doesn't start
-#        | Fedora Release Notes   |
         | Files                  |
         | Firewall               |
         | Font Viewer            |
         | gedit                  |
-#        | GNOME System Monitor   |
         | Help                   |
         | Image Viewer           |
         | Logs                   |
@@ -48,14 +42,12 @@ Feature: GNOME Application start stop tests
         | Network Connections    |
         | Notes                  |
         | Passwords and Keys     |
-#        | Problem Reporting      |
         | Remote Desktop Viewer  |
         | Rhythmbox              |
         | rxvt-unicode           |
         | Rygel Preferences      |
         | Screen Reader          |
         | Screenshot             |
-#        | SELinux Troubleshooter |
         | Settings               |
         | Shotwell               |
         | Simple Scan            |
@@ -67,3 +59,12 @@ Feature: GNOME Application start stop tests
         | Videos                 |
         | Weather                |
         | XTerm                  |
+# Disabled
+# Requires a server
+#        | Emacs                  |
+#        | Emacs Client           |
+# doesn't start
+#        | Fedora Release Notes   |
+#        | GNOME System Monitor   |
+#        | Problem Reporting      |
+#        | SELinux Troubleshooter |
