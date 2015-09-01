@@ -23,8 +23,9 @@ def set_gdm_to_use_session(context, session_name):
 
     if 'wayland' in session_name:
         print("Exporting Clutter and GDK backends to use Wayland")
-        cmd = "echo 'export GDK_BACKEND=wayland; export CLUTTER_BACKEND=wayland'"
-        cmd += " > /etc/X11/xinit/xinitrc.d/99-wayland_envs.sh; chmod +x /etc/X11/xinit/xinitrc.d/99-wayland_envs.sh"
+        cmd = "sudo echo 'export GDK_BACKEND=wayland; export CLUTTER_BACKEND=wayland'"
+        cmd += " | sudo tee /etc/X11/xinit/xinitrc.d/99-wayland_envs.sh"
+        cmd += " sudo chmod +x /etc/X11/xinit/xinitrc.d/99-wayland_envs.sh"
     else:
         print("Removing wayland env vars")
         cmd = "rm -rf /etc/X11/xinit/xinitrc.d/99-wayland_envs.sh"

@@ -34,4 +34,5 @@ systemctl restart abrt-oops
 
 echo ">> Enable debug messages from GTK apps"
 echo "export G_MESSAGES_DEBUG=all" > /etc/X11/xinit/xinitrc.d/99-gtk_debug.sh
+chown test:test /etc/X11/xinit/xinitrc.d/99-gtk_debug.sh
 chmod +x /etc/X11/xinit/xinitrc.d/99-gtk_debug.sh
