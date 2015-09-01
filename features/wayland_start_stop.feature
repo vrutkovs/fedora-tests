@@ -13,57 +13,82 @@ Feature: Wayland session start stop tests
 
     Examples:
         | app                    |
-        | AisleRiot Solitaire    |
-        | Archive Manager        |
-        | Backups                |
-        | Boxes                  |
-        | Brasero                |
-        | Calculator             |
-        | Character Map          |
-        | Cheese                 |
-        | Clocks                 |
-        | Color Profile Viewer   |
-        | Contacts               |
-        | Dictionary             |
-        | Disk Usage Analyzer    |
-        | Disks                  |
-        | Document Viewer        |
-        | Documents              |
-        | Empathy                |
-        | Evolution              |
-        | Files                  |
-        | Firewall               |
-        | Font Viewer            |
-        | gedit                  |
-        | Help                   |
-        | Image Viewer           |
-        | Logs                   |
-        | Maps                   |
-        | Network Connections    |
-        | Notes                  |
-        | Passwords and Keys     |
-        | Remote Desktop Viewer  |
-        | Rhythmbox              |
-        | rxvt-unicode           |
-        | Rygel Preferences      |
-        | Screen Reader          |
-        | Screenshot             |
-        | Settings               |
-        | Shotwell               |
-        | Simple Scan            |
-        | Software               |
-        | Sound Recorder         |
-        | System Monitor         |
-        | Terminal               |
-        | Transmission           |
-        | Videos                 |
-        | Weather                |
-        | XTerm                  |
+        | app                    |
+        | Accerciser            |
+        | AisleRiot Solitaire   |
+        | Anjuta                |
+        | Archive Manager       |
+        | Backups               |
+        | Boxes                 |
+        | Brasero               |
+        | Calculator            |
+        | Character Map         |
+        | Cheese                |
+        | Chess                 |
+        | Clocks                |
+        | Color Profile Viewer  |
+        | Contacts              |
+        | dconf Editor          |
+        | Desktop Search        |
+        | Devhelp               |
+        | Dictionary            |
+        | Disk Usage Analyzer   |
+        | Disks                 |
+        | Document Viewer       |
+        | Documents             |
+        | Empathy               |
+        | Evolution             |
+        | Files                 |
+        | Firewall              |
+        | Five or More          |
+        | Font Viewer           |
+        | Four-in-a-row         |
+        | gedit                 |
+        | GHex                  |
+        | Glade                 |
+        | Help                  |
+        | Iagno                 |
+        | Image Viewer          |
+        | Klotski               |
+        | Lights Off            |
+        | Logs                  |
+        | Mahjongg              |
+        | Main Menu             |
+        | Maps                  |
+        | Mines                 |
+        | Music                 |
+        | Nemiver               |
+        | Network Connections   |
+        | Nibbles               |
+        | Notes                 |
+        | Passwords and Keys    |
+        | Photos                |
+        | Pitivi                |
+        | Quadrapassel          |
+        | Remote Desktop Viewer |
+        | Rhythmbox             |
+        | Robots                |
+        | rxvt-unicode          |
+        | Rygel Preferences     |
+        | Screen Reader         |
+        | Screenshot            |
+        | Settings              |
+        | Shotwell              |
+        | Simple Scan           |
+        | Software              |
+        | Sound Recorder        |
+        | Sudoku                |
+        | Swell Foop            |
+        | System Monitor        |
+        | Tali                  |
+        | Terminal              |
+        | Tetravex              |
+        | Transmission          |
+        | Videos                |
+        | Weather               |
+        | Web                   |
+        | XTerm                 |
 # Disabled
-# Requires a server
-#        | Emacs                  |
-#        | Emacs Client           |
-# doesn't start
 #        | Fedora Release Notes   |
 #        | GNOME System Monitor   |
 #        | Problem Reporting      |
