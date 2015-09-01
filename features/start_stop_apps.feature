@@ -5,6 +5,7 @@ Feature: GNOME Application start stop tests
     Scenario: Make sure gnome-shell is started
         * Make sure "basic-desktop-environment" package group is installed
         * Make sure "gnome" package group is installed
+        * Make sure misc gnome packages are installed
         * Start gdm for "test" user and "gnome" session
 
     Scenario Outline: Start-stop application
@@ -39,7 +40,7 @@ Feature: GNOME Application start stop tests
         | Firewall               |
         | Font Viewer            |
         | gedit                  |
-        | GNOME System Monitor   |
+#        | GNOME System Monitor   |
         | Help                   |
         | Image Viewer           |
         | Logs                   |
@@ -54,7 +55,7 @@ Feature: GNOME Application start stop tests
         | Rygel Preferences      |
         | Screen Reader          |
         | Screenshot             |
-        | SELinux Troubleshooter |
+#        | SELinux Troubleshooter |
         | Settings               |
         | Shotwell               |
         | Simple Scan            |

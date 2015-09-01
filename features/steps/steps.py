@@ -173,3 +173,16 @@ def start_app(context, appname):
 
     if not test_result:
         raise Exception("App %s didn't start" % appname)
+
+
+@step(u'Make sure misc gnome packages are installed')
+def install_gnome_misc_packages(context):
+    pkgs = 'alacarte dconf-editor ghex gnome-photos gtk3-devel tracker-needle epiphany accerciser anjuta devhelp five-or-more four-in-a-row glade gnome-chess gnome-klotski gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sudoku gnome-tetravex iagno lightsoff nemiver pitivi quadrapassel swell-foop tali gnome-music'
+
+    cmd = 'sudo dnf install -y %s' % pkgs
+    try:
+        print("Running '%s'" % cmd)
+        subprocess.check_output(cmd, shell=True)
+    except subprocess.CalledProcessError as e:
+        print(e.output)
+        raise e

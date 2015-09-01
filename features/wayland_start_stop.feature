@@ -5,6 +5,7 @@ Feature: Wayland session start stop tests
     Scenario: Make sure gnome-shell is started
         * Make sure "basic-desktop-environment" package group is installed
         * Make sure "gnome" package group is installed
+        * Make sure misc gnome packages are installed
         * Start gdm for "test" user and "gnome-wayland" session
 
     Scenario Outline: Start-stop application in Wayland
