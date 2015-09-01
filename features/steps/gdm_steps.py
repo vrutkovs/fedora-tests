@@ -21,6 +21,21 @@ def set_gdm_to_use_session(context, session_name):
         print(e.output)
         raise e
 
+    if 'wayland' in session_name:
+        print("Exporting Clutter and GDK backends to use Wayland")
+        cmd = "echo 'export GDK_BACKEND=wayland; export CLUTTER_BACKEND=wayland'"
+        cmd += " > /etc/X11/xinit/xinitrc.d/99-wayland_envs.sh; chmod +x /etc/X11/xinit/xinitrc.d/99-wayland_envs.sh"
+    else:
+        print("Removing wayland env vars")
+        cmd = "rm -rf /etc/X11/xinit/xinitrc.d/99-wayland_envs.sh"
+
+    try:
+        print("Running '%s'" % cmd)
+        subprocess.check_output(cmd, shell=True)
+    except subprocess.CalledProcessError as e:
+        print(e.output)
+
+
 
 @step(u'Set gdm options')
 def set_gdm_options(context):
