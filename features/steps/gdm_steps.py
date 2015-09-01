@@ -28,7 +28,7 @@ def set_gdm_to_use_session(context, session_name):
         cmd += " sudo chmod +x /etc/X11/xinit/xinitrc.d/99-wayland_envs.sh"
     else:
         print("Removing wayland env vars")
-        cmd = "rm -rf /etc/X11/xinit/xinitrc.d/99-wayland_envs.sh"
+        cmd = "sudo rm -rf /etc/X11/xinit/xinitrc.d/99-wayland_envs.sh"
 
     try:
         print("Running '%s'" % cmd)
