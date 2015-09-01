@@ -43,7 +43,7 @@ def after_scenario(context, scenario):
             sleep(1)
 
     # Add journal entries to the journal
-    cmd = "sudo journalctl --no-pager -o short-monotonic --since='%s'" % context.start_time.strftime("%H:%M:%S")
+    cmd = "sudo journalctl --no-pager -o short-monotonic -b --since='%s'" % context.start_time.strftime("%H:%M:%S")
     journal = subprocess.check_output(cmd, shell=True).decode('utf8')
     context.embed('text/plain', journal, caption="journal")
 
