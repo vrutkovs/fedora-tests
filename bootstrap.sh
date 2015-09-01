@@ -31,3 +31,6 @@ echo ">> Restarting abrt"
 systemctl restart abrtd
 systemctl restart abrt-journal-core
 systemctl restart abrt-oops
+
+echo ">> Enable debug messages from GTK apps"
+echo "export G_MESSAGES_DEBUG=all" > /etc/X11/xinit/xinitrc.d/99-gtk_debug.sh
