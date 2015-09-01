@@ -179,7 +179,7 @@ def start_app(context, appname):
 def install_gnome_misc_packages(context):
     pkgs = 'alacarte dconf-editor ghex gnome-photos gtk3-devel tracker-needle epiphany accerciser anjuta devhelp five-or-more four-in-a-row glade gnome-chess gnome-klotski gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sudoku gnome-tetravex iagno lightsoff nemiver pitivi quadrapassel swell-foop tali gnome-music'
 
-    cmd = 'sudo dnf install -y %s' % pkgs
+    cmd = 'sudo dnf install -y %s && sudo dnf remove -y gnome-abrt' % pkgs
     try:
         print("Running '%s'" % cmd)
         subprocess.check_output(cmd, shell=True)
