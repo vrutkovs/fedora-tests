@@ -12,7 +12,7 @@ Feature: GNOME Application start stop tests
         * Start "<app>" application
 
     Examples:
-        | app                    |
+        | app                   |
         | Accerciser            |
         | AisleRiot Solitaire   |
         | Anjuta                |

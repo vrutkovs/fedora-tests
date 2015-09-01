@@ -12,8 +12,7 @@ Feature: Wayland session start stop tests
         * Start "<app>" application
 
     Examples:
-        | app                    |
-        | app                    |
+        | app                   |
         | Accerciser            |
         | AisleRiot Solitaire   |
         | Anjuta                |
