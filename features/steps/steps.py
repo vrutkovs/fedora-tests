@@ -185,4 +185,3 @@ def install_gnome_misc_packages(context):
         subprocess.check_output(cmd, shell=True)
     except subprocess.CalledProcessError as e:
         print(e.output)
-        raise e

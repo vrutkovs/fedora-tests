@@ -44,7 +44,6 @@ Feature: Wayland session start stop tests
         | Four-in-a-row         |
         | gedit                 |
         | GHex                  |
-        | Glade                 |
         | Help                  |
         | Iagno                 |
         | Image Viewer          |
@@ -87,6 +86,7 @@ Feature: Wayland session start stop tests
         | Weather               |
         | Web                   |
         | XTerm                 |
+        | Glade                 |
 # Disabled
 #        | Fedora Release Notes   |
 #        | GNOME System Monitor   |
