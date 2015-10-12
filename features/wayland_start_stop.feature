@@ -66,7 +66,6 @@ Feature: Wayland session start stop tests
         | Remote Desktop Viewer |
         | Rhythmbox             |
         | Robots                |
-        | rxvt-unicode          |
         | Rygel Preferences     |
         | Screen Reader         |
         | Screenshot            |
@@ -85,8 +84,10 @@ Feature: Wayland session start stop tests
         | Videos                |
         | Weather               |
         | Web                   |
-        | XTerm                 |
         | Glade                 |
+# Known not to work in wayland
+#        | rxvt-unicode          |
+#        | XTerm                 |
 # Disabled
 #        | Fedora Release Notes   |
 #        | GNOME System Monitor   |
