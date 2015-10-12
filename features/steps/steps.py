@@ -76,7 +76,7 @@ def install_package_group(context, group_name):
         print("Running '%s'" % cmd)
         subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
-        print(e.output)
+        print(e.output.decode('utf-8'))
         raise e
 
 
