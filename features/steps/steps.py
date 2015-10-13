@@ -71,7 +71,7 @@ def wait_for_gnome_shell(context, timeout=60):
 
 @step(u'Make sure "{group_name}" package group is installed')
 def install_package_group(context, group_name):
-    cmd = "sudo dnf groupinstall -y %s" % group_name
+    cmd = "sudo dnf groupinstall -y %s 2>&1" % group_name
     try:
         print("Running '%s'" % cmd)
         subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
@@ -93,7 +93,7 @@ def touch_smoketest_passed(context):
 
 @step(u'Run installed tests for "{prefix}" from "{package}"')
 def run_installed_test_for_package(context, prefix, package):
-    cmd = "sudo dnf install -y %s" % package
+    cmd = "sudo dnf install -y %s 2>&1" % package
     try:
         print("Running '%s'" % cmd)
         subprocess.check_output(cmd, shell=True)
@@ -179,7 +179,7 @@ def start_app(context, appname):
 def install_gnome_misc_packages(context):
     pkgs = 'alacarte dconf-editor ghex gnome-photos gtk3-devel tracker-needle epiphany accerciser anjuta devhelp five-or-more four-in-a-row glade gnome-chess gnome-klotski gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sudoku gnome-tetravex iagno lightsoff nemiver pitivi quadrapassel swell-foop tali gnome-music'
 
-    cmd = 'sudo dnf install -y %s && sudo dnf remove -y gnome-abrt' % pkgs
+    cmd = 'sudo dnf install -y %s 2>&1 && sudo dnf remove -y gnome-abrt' % pkgs
     try:
         print("Running '%s'" % cmd)
         subprocess.check_output(cmd, shell=True)
