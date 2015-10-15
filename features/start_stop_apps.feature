@@ -61,19 +61,15 @@ Feature: GNOME Application start stop tests
         | Notes                 |
         | Passwords and Keys    |
         | Photos                |
-        | Pitivi                |
         | Quadrapassel          |
         | Remote Desktop Viewer |
         | Rhythmbox             |
         | Robots                |
-        | rxvt-unicode          |
         | Rygel Preferences     |
         | Screen Reader         |
         | Screenshot            |
         | Settings              |
-        | Shotwell              |
         | Simple Scan           |
-        | Software              |
         | Sound Recorder        |
         | Sudoku                |
         | Swell Foop            |
@@ -81,12 +77,18 @@ Feature: GNOME Application start stop tests
         | Tali                  |
         | Terminal              |
         | Tetravex              |
-        | Transmission          |
         | Videos                |
         | Weather               |
         | Web                   |
+# Moving those to bottom to get better screenshot, as those cannot be closed properly
+        | Pitivi                |
+        | Shotwell              |
+        | Software              |
+        | Transmission          |
         | XTerm                 |
         | Glade                 |
+# Missing
+#        | rxvt-unicode          |
 # Disabled
 #        | Fedora Release Notes   |
 #        | GNOME System Monitor   |
